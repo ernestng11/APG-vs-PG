@@ -100,12 +100,5 @@ while count < maxit:  # and f_change > tol
 
 rang = range(0, count)
 
-
-# In[305]:
-
-
 plt.plot(rang, fx_lst)
 plt.show()
-
-
-# In[ ]:
