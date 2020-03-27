@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[304]:
-
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -20,11 +18,9 @@ ytest = data['ytest'].T
 xtrain = np.concatenate((data['Xtrain'], np.ones((3065, 1))), axis=1).T
 xtest = np.concatenate((data['Xtest'], np.ones((1536, 1))), axis=1).T
 
-
 def sigmoid(x):
     a = 1/(1+np.exp(-x))
     return a
-
 
 def prediction(w, Data):
     pred = []
@@ -38,14 +34,11 @@ def prediction(w, Data):
     return pred
 
 # f(w) = l(w) + theta*||w||-1
-
-
 def obj(w, X, y, theta):
     z = np.dot(w.T, X)
     val = -np.multiply(y, z)
     J = np.sum(np.log(1+np.exp(val)))
     return J + theta*np.sum(np.abs(w))
-
 
 def grad(w, X, y, theta):
     z = np.dot(w.T, X)
@@ -56,12 +49,8 @@ def grad(w, X, y, theta):
     gradJ = np.dot(X, f.T)
     return gradJ
 
-# L is Lipshitz constant
-
-
 def proxMap(L, w):
     return np.sign(w)*np.maximum(np.zeros(np.shape(w)), np.abs(w)-theta/L)
-
 
 y = ytrain
 X = xtrain
@@ -75,7 +64,7 @@ beta = 0
 wOld = np.zeros((58, 1))
 w_array = np.array(wOld)
 wBar = wOld
-# L is Lipshitz constant
+# L is Lipschitz constant
 L = 0.5*(np.linalg.norm(xtrain)**2)*0.1
 fx = obj(wOld, X, y, theta)  # Function value
 gradwBar = grad(wBar, X, y, theta)  # Gradient at wBar
